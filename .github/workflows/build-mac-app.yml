@@ -26,11 +26,12 @@ jobs:
 
     - name: Build .app
       run: |
-        pyinstaller --onefile --windowed doc_to_pptx_gui_progress.py
-        ls dist
+        # 使用 --onedir，生成資料夾包含所有依賴
+        pyinstaller --onedir --windowed --name doc_to_pptx_gui_progress doc_to_pptx_gui_progress.py
+        ls dist   # 查看生成的資料夾
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v4   # 改成 v4
+      uses: actions/upload-artifact@v3
       with:
         name: doc_to_pptx_gui_progress-mac
-        path: dist/*
+        path: dist/doc_to_pptx_gui_progress/*
